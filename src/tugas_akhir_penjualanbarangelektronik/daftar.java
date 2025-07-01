@@ -5,17 +5,31 @@
  */
 package tugas_akhir_penjualanbarangelektronik;
 
-/**
- *
- * @author LENOVO
- */
-public class daftar extends javax.swing.JFrame {
+import java.sql.*;
+import javax.swing.*;
 
-    /**
-     * Creates new form daftar
-     */
+public class daftar extends javax.swing.JFrame {
+Connection conn;
+    Statement stat;
+    ResultSet res;
+    String sql;
     public daftar() {
         initComponents();
+         database db = new database();
+        db.config();
+        conn = db.conn;
+        stat = db.stm;
+    }private void kosong(){
+        txtusername.setText("");
+        txtpass.setText("");
+    }private void tabel_login(){
+         try{
+            int no = 1;
+            String sql = "select * from admin";
+            res = stat.executeQuery(sql);
+        } catch (Exception err){
+            JOptionPane.showMessageDialog(this, err.getMessage());
+        }
     }
 
     /**
@@ -30,14 +44,13 @@ public class daftar extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtusernameakun = new javax.swing.JTextField();
+        txtusername = new javax.swing.JTextField();
         btndaftar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         txtpass = new javax.swing.JPasswordField();
         jPanel2 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -78,7 +91,7 @@ public class daftar extends javax.swing.JFrame {
                         .addGap(124, 124, 124)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel1)
-                            .addComponent(txtusernameakun, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
+                            .addComponent(txtusername, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
                             .addComponent(txtpass)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(231, 231, 231)
@@ -93,23 +106,23 @@ public class daftar extends javax.swing.JFrame {
                 .addGap(82, 82, 82)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtusernameakun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtusername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(55, 55, 55)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtpass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(76, 76, 76)
                 .addComponent(btndaftar)
-                .addContainerGap(188, Short.MAX_VALUE))
+                .addContainerGap(128, Short.MAX_VALUE))
         );
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBackground(new java.awt.Color(153, 153, 255));
 
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GAMBAR/daftarakun2.png"))); // NOI18N
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("DAFTAR AKUN");
-
-        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\lenov\\Downloads\\gembok.jpg")); // NOI18N
-
-        jLabel6.setText("Aplikasi Penjualan Alat Elektronik DAMAY");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -118,25 +131,20 @@ public class daftar extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(jLabel5))
+                        .addGap(93, 93, 93)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(71, 71, 71)
-                        .addComponent(jLabel4))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jLabel6)))
-                .addContainerGap(40, Short.MAX_VALUE))
+                        .addGap(78, 78, 78)
+                        .addComponent(jLabel4)))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(101, 101, 101)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
                 .addComponent(jLabel4)
-                .addGap(41, 41, 41)
-                .addComponent(jLabel6)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -146,8 +154,9 @@ public class daftar extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,7 +172,22 @@ public class daftar extends javax.swing.JFrame {
     }//GEN-LAST:event_txtpassActionPerformed
 
     private void btndaftarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndaftarActionPerformed
-        // TODO add your handling code here:
+       String user = txtusername.getText();
+        String pass = new String(txtpass.getPassword());
+        String sql = "insert into admin(username,password,level) values "
+                + "('" + user + "','" + pass +"','"+"user')";
+        try {   
+            stat.execute(sql);
+            JOptionPane.showMessageDialog(null, "Berhasil Daftar");
+            login Login = new login();
+            Login.setVisible(true);
+            dispose();
+            kosong();
+        } catch (Exception err) {
+            JOptionPane.showMessageDialog(null, err.getMessage());
+        }
+        
+        
     }//GEN-LAST:event_btndaftarActionPerformed
 
     /**
@@ -208,10 +232,9 @@ public class daftar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField txtpass;
-    private javax.swing.JTextField txtusernameakun;
+    private javax.swing.JTextField txtusername;
     // End of variables declaration//GEN-END:variables
 }

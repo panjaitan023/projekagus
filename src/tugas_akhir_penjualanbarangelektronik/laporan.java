@@ -5,17 +5,27 @@
  */
 package tugas_akhir_penjualanbarangelektronik;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
 /**
  *
  * @author LENOVO
  */
-public class tabbed_pane extends javax.swing.JFrame {
-
+public class laporan extends javax.swing.JFrame {
+    private String dataProduk;
     /**
      * Creates new form tabbed_pane
      */
-    public tabbed_pane() {
+    public laporan(String data) {
         initComponents();
+        tabbedPane.addTab("Data Produk Baru", new JScrollPane(new JTextArea(data)));
+    }
+    public void produk1(){
+        
     }
 
     /**
@@ -28,25 +38,30 @@ public class tabbed_pane extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        tabbedPane = new javax.swing.JTabbedPane();
         pn_penjualan = new javax.swing.JPanel();
         btntampilkan = new javax.swing.JButton();
         btnhapus = new javax.swing.JButton();
         sp_penjualan = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table_penjualan = new javax.swing.JTable();
         pn_invoice = new javax.swing.JPanel();
         sp_laporan = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        txa_laporan = new javax.swing.JTextArea();
         btntampilkaninvoice = new javax.swing.JButton();
         btnhapusinvoice = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btntampilkan.setText("Tampilkan data ");
+        btntampilkan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btntampilkanActionPerformed(evt);
+            }
+        });
 
         btnhapus.setText("Hapus");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table_penjualan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -72,7 +87,7 @@ public class tabbed_pane extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        sp_penjualan.setViewportView(jTable1);
+        sp_penjualan.setViewportView(table_penjualan);
 
         javax.swing.GroupLayout pn_penjualanLayout = new javax.swing.GroupLayout(pn_penjualan);
         pn_penjualan.setLayout(pn_penjualanLayout);
@@ -97,15 +112,25 @@ public class tabbed_pane extends javax.swing.JFrame {
                 .addGap(0, 142, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Penjualan", pn_penjualan);
+        tabbedPane.addTab("Penjualan", pn_penjualan);
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        sp_laporan.setViewportView(jTextArea2);
+        txa_laporan.setColumns(20);
+        txa_laporan.setRows(5);
+        sp_laporan.setViewportView(txa_laporan);
 
         btntampilkaninvoice.setText("Tampilkan");
+        btntampilkaninvoice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btntampilkaninvoiceActionPerformed(evt);
+            }
+        });
 
         btnhapusinvoice.setText("Hapus");
+        btnhapusinvoice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnhapusinvoiceActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pn_invoiceLayout = new javax.swing.GroupLayout(pn_invoice);
         pn_invoice.setLayout(pn_invoiceLayout);
@@ -130,17 +155,17 @@ public class tabbed_pane extends javax.swing.JFrame {
                 .addGap(0, 70, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Invoice/Laporan", pn_invoice);
+        tabbedPane.addTab("Invoice/Laporan", pn_invoice);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(tabbedPane)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(tabbedPane)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -156,6 +181,48 @@ public class tabbed_pane extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btntampilkaninvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntampilkaninvoiceActionPerformed
+       if (table_penjualan.getRowCount() == 0) {
+            
+       StringBuilder invoice = new StringBuilder();
+        invoice.append("----- INVOICE PENJUALAN -----\n");
+        invoice.append("Tanggal: ").append(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date())).append("\n\n");
+
+        invoice.append(String.format("%-20s %10s %15s %15s\n", "Produk", "Jumlah", "Harga/Unit (Rp)", "Total (Rp)"));
+        invoice.append("-----------------------------------------------------------------\n");
+        
+        double grandTotal = 0;
+        for (int i = 0; i < table_penjualan.getRowCount(); i++) {
+            String product = table_penjualan.getValueAt(i, 0).toString();
+            String qty = table_penjualan.getValueAt(i, 1).toString();
+            String price = table_penjualan.getValueAt(i, 2).toString();
+            String total = table_penjualan.getValueAt(i, 3).toString();
+
+            invoice.append(String.format("%-20s %10s %15s %15s\n", product, qty, price, total));
+         grandTotal += Double.parseDouble(total.replaceAll(",", ""));
+        }
+
+        invoice.append("-----------------------------------------------------------------\n");
+        invoice.append(String.format("%-20s %10s %15s %15s\n", "", "", "Grand Total:", String.format("%,.2f", grandTotal)));
+
+        txa_laporan.setText(invoice.toString());
+        tabbedPane.setSelectedIndex(1); // Switch to Invoice tab
+       }else{
+           JOptionPane.showMessageDialog(this, "Daftar penjualan kosong. Tambahkan penjualan terlebih dahulu.", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+       
+            return;
+       }
+    }//GEN-LAST:event_btntampilkaninvoiceActionPerformed
+
+    private void btnhapusinvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnhapusinvoiceActionPerformed
+       txa_laporan.setText("");
+    }//GEN-LAST:event_btnhapusinvoiceActionPerformed
+
+    private void btntampilkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntampilkanActionPerformed
+     produk pk = new produk();
+      pk.setVisible(true);
+    }//GEN-LAST:event_btntampilkanActionPerformed
 
     /**
      * @param args the command line arguments
@@ -174,20 +241,21 @@ public class tabbed_pane extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(tabbed_pane.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(laporan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(tabbed_pane.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(laporan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(tabbed_pane.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(laporan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(tabbed_pane.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(laporan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new tabbed_pane().setVisible(true);
+                new laporan().setVisible(true);
             }
         });
     }
@@ -198,12 +266,12 @@ public class tabbed_pane extends javax.swing.JFrame {
     private javax.swing.JButton btntampilkan;
     private javax.swing.JButton btntampilkaninvoice;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JPanel pn_invoice;
     private javax.swing.JPanel pn_penjualan;
     private javax.swing.JScrollPane sp_laporan;
     private javax.swing.JScrollPane sp_penjualan;
+    private javax.swing.JTabbedPane tabbedPane;
+    private javax.swing.JTable table_penjualan;
+    private javax.swing.JTextArea txa_laporan;
     // End of variables declaration//GEN-END:variables
 }

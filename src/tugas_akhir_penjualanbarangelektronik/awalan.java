@@ -21,6 +21,8 @@ public class awalan extends javax.swing.JFrame {
         initComponents();
     }
 
+    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -36,13 +38,14 @@ public class awalan extends javax.swing.JFrame {
         pn_login = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         pn_login1 = new javax.swing.JPanel();
-        pn_daftar = new javax.swing.JPanel();
+        pn_menu = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        pn_daftar1 = new javax.swing.JPanel();
+        pn_menu1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jScrollBar1 = new javax.swing.JScrollBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,6 +74,9 @@ public class awalan extends javax.swing.JFrame {
 
         pn_login.setBackground(new java.awt.Color(54, 70, 78));
         pn_login.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pn_loginMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 pn_loginMouseEntered(evt);
             }
@@ -100,53 +106,43 @@ public class awalan extends javax.swing.JFrame {
 
         pn_login.add(pn_login1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
-        jPanel2.add(pn_login, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 190, 50));
+        jPanel2.add(pn_login, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 230, 50));
 
-        pn_daftar.setBackground(new java.awt.Color(54, 70, 78));
-        pn_daftar.addMouseListener(new java.awt.event.MouseAdapter() {
+        pn_menu.setBackground(new java.awt.Color(54, 70, 78));
+        pn_menu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pn_menuMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                pn_daftarMouseEntered(evt);
+                pn_menuMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                pn_daftarMouseExited(evt);
+                pn_menuMouseExited(evt);
             }
         });
+        pn_menu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("DAFTAR");
+        jLabel5.setText("DASHBOARD");
+        pn_menu.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 120, 30));
 
-        pn_daftar1.setBackground(new java.awt.Color(54, 70, 78));
+        pn_menu1.setBackground(new java.awt.Color(54, 70, 78));
 
-        javax.swing.GroupLayout pn_daftar1Layout = new javax.swing.GroupLayout(pn_daftar1);
-        pn_daftar1.setLayout(pn_daftar1Layout);
-        pn_daftar1Layout.setHorizontalGroup(
-            pn_daftar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout pn_menu1Layout = new javax.swing.GroupLayout(pn_menu1);
+        pn_menu1.setLayout(pn_menu1Layout);
+        pn_menu1Layout.setHorizontalGroup(
+            pn_menu1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 10, Short.MAX_VALUE)
         );
-        pn_daftar1Layout.setVerticalGroup(
-            pn_daftar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        pn_menu1Layout.setVerticalGroup(
+            pn_menu1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 30, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout pn_daftarLayout = new javax.swing.GroupLayout(pn_daftar);
-        pn_daftar.setLayout(pn_daftarLayout);
-        pn_daftarLayout.setHorizontalGroup(
-            pn_daftarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pn_daftarLayout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(pn_daftar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel5)
-                .addContainerGap(56, Short.MAX_VALUE))
-        );
-        pn_daftarLayout.setVerticalGroup(
-            pn_daftarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-            .addComponent(pn_daftar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        pn_menu.add(pn_menu1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
-        jPanel2.add(pn_daftar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 190, 50));
+        jPanel2.add(pn_menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 230, 50));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 190, 1010));
 
@@ -166,7 +162,7 @@ public class awalan extends javax.swing.JFrame {
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, -50, 710, 1060));
 
-        jLabel1.setBackground(new java.awt.Color(51, 51, 255));
+        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setForeground(new java.awt.Color(153, 153, 153));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GAMBAR/koko.png"))); // NOI18N
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -189,8 +185,9 @@ public class awalan extends javax.swing.JFrame {
         jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 90, 60));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GAMBAR/WhatsApp Image 2025-06-16 at 14.07.47.jpeg"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GAMBAR/WhatsApp Image 2025-06-16 at 14.04.02.jpeg"))); // NOI18N
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -30, 900, 1040));
+        jPanel1.add(jScrollBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -211,7 +208,7 @@ public class awalan extends javax.swing.JFrame {
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
       if(x == 0){
            jPanel2.show();
-           jPanel2.setSize(x, 552);
+           jPanel2.setSize(x, 710);
            Thread th = new Thread(){
                @Override 
                public void run (){
@@ -219,7 +216,7 @@ public class awalan extends javax.swing.JFrame {
                        for (int i = 0; i <= x; i++) {
                            
                        Thread.sleep(1);
-                       jPanel2.setSize(i ,552);
+                       jPanel2.setSize(i ,710);
                        }
                    }catch(Exception e){
                        JOptionPane.showMessageDialog(null, e);
@@ -233,14 +230,14 @@ public class awalan extends javax.swing.JFrame {
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
        if(x == 210 ){
-           jPanel2.setSize(210, 552);
+           jPanel2.setSize(210, 710);
            Thread th = new Thread(){
                @Override
                public void run(){
                    try{
                        for (int i = 210; i >= 0; i--) {
                            Thread.sleep(1);
-                           jPanel2.setSize(i, 552);
+                           jPanel2.setSize(i, 710);
                        }
                    }catch(Exception e){
                        JOptionPane.showMessageDialog(null, e);
@@ -260,7 +257,7 @@ public class awalan extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel2MouseExited
 
     private void pn_loginMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pn_loginMouseEntered
-       pn_login.setBackground(new Color (204,204,204));
+        pn_login.setBackground(new Color (204,204,204));
        pn_login1.setBackground(new Color (0,102,153));
     }//GEN-LAST:event_pn_loginMouseEntered
 
@@ -270,26 +267,36 @@ public class awalan extends javax.swing.JFrame {
        
     }//GEN-LAST:event_pn_loginMouseExited
 
-    private void pn_daftarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pn_daftarMouseEntered
-       pn_daftar.setBackground(new Color (204,204,204));
-       pn_daftar1.setBackground(new Color (0,102,153));
+    private void pn_menuMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pn_menuMouseEntered
+        pn_menu.setBackground(new Color (204,204,204));
+       pn_menu1.setBackground(new Color (0,102,153));
        
-    }//GEN-LAST:event_pn_daftarMouseEntered
+    }//GEN-LAST:event_pn_menuMouseEntered
 
-    private void pn_daftarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pn_daftarMouseExited
-       pn_daftar.setBackground(new Color (54,70,78));
-       pn_daftar1.setBackground(new Color (54,70,78));
-    }//GEN-LAST:event_pn_daftarMouseExited
+    private void pn_menuMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pn_menuMouseExited
+       pn_menu.setBackground(new Color (54,70,78));
+       pn_menu1.setBackground(new Color (54,70,78));
+    }//GEN-LAST:event_pn_menuMouseExited
 
     private void jLabel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseEntered
         // TODO add your handling code here:
-        labelcolor(jLabel1);
+        labelcolor1(jLabel1);
     }//GEN-LAST:event_jLabel1MouseEntered
 
     private void jLabel1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseExited
         // TODO add your handling code here:
-        resetlabelcolor(jLabel1);
+        resetlabelcolor1(jLabel1);
     }//GEN-LAST:event_jLabel1MouseExited
+
+    private void pn_loginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pn_loginMouseClicked
+       login lg = new login();
+       lg.setVisible(true);    
+    }//GEN-LAST:event_pn_loginMouseClicked
+
+    private void pn_menuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pn_menuMouseClicked
+        menuutama mn = new menuutama();
+       mn.setVisible(true);   
+    }//GEN-LAST:event_pn_menuMouseClicked
 
     /**
      * @param args the command line arguments
@@ -337,15 +344,22 @@ public class awalan extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel pn_daftar;
-    private javax.swing.JPanel pn_daftar1;
+    private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JPanel pn_login;
     private javax.swing.JPanel pn_login1;
+    private javax.swing.JPanel pn_menu;
+    private javax.swing.JPanel pn_menu1;
     // End of variables declaration//GEN-END:variables
 public void labelcolor(JLabel label){
     label.setBackground(new java.awt.Color(53,162,107));
 }
+public void labelcolor1(JLabel label){
+    label.setBackground(new java.awt.Color(53,162,107));
+}
 public void resetlabelcolor(JLabel label){
     label.setBackground(new  java.awt.Color(54,70,78));
+}
+public void resetlabelcolor1(JLabel label){
+    label.setBackground(new  java.awt.Color(0,0,0));
 }
 }

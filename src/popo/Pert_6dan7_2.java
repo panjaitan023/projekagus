@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tugas_akhir_penjualanbarangelektronik;
+package popo;
 import java.awt.Color;
 /**
  *

@@ -5,17 +5,34 @@
  */
 package tugas_akhir_penjualanbarangelektronik;
 
+import java.sql.*;
+import javax.swing.*;
 /**
  *
  * @author LENOVO
  */
 public class login extends javax.swing.JFrame {
-
-    /**
-     * Creates new form login
-     */
+ Connection conn;
+    Statement stat;
+    ResultSet res;
+    String sql;
     public login() {
         initComponents();
+         database db = new database();
+        db.config();
+        conn = db.conn;
+        stat = db.stm;
+    }private void kosong(){
+        txtusername.setText("");
+        txtpass.setText("");
+    }private void tabel_login(){
+         try{
+            int no = 1;
+            String sql = "select * from admin";
+            res = stat.executeQuery(sql);
+        } catch (Exception err){
+            JOptionPane.showMessageDialog(this, err.getMessage());
+        }
     }
 
     /**
@@ -32,33 +49,30 @@ public class login extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtusername = new javax.swing.JTextField();
-        txtpassword = new javax.swing.JTextField();
         btnlogin = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
+        txtpass = new javax.swing.JPasswordField();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("LOGIN");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(345, 63, -1, -1));
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(345, 63, 81, 29);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setText("USERNAME:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(59, 162, -1, -1));
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(59, 162, 108, 22);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setText("PASSWORD:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(59, 243, -1, -1));
-        jPanel1.add(txtusername, new org.netbeans.lib.awtextra.AbsoluteConstraints(282, 161, 282, -1));
-
-        txtpassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtpasswordActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txtpassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(282, 242, 282, -1));
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(59, 243, 113, 22);
+        jPanel1.add(txtusername);
+        txtusername.setBounds(282, 161, 282, 26);
 
         btnlogin.setBackground(new java.awt.Color(0, 0, 255));
         btnlogin.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -69,34 +83,60 @@ public class login extends javax.swing.JFrame {
                 btnloginActionPerformed(evt);
             }
         });
-        jPanel1.add(btnlogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 330, 280, -1));
+        jPanel1.add(btnlogin);
+        btnlogin.setBounds(290, 330, 280, 31);
 
-        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\lenov\\Downloads\\elek.jpg")); // NOI18N
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 480));
+        txtpass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtpassActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtpass);
+        txtpass.setBounds(280, 240, 280, 26);
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GAMBAR/ChatGPT Image 18 Jun 2025, 14.06.32.png"))); // NOI18N
+        jPanel1.add(jLabel4);
+        jLabel4.setBounds(0, 0, 710, 480);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 710, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtpasswordActionPerformed
+       
 
     private void btnloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnloginActionPerformed
-        // TODO add your handling code here:
+        String user = txtusername.getText();
+        String pass = new String (txtpass.getPassword());
+        String sql = "select * from admin where username='" + user + "' and password='" + pass + "'";
+        try {
+            java.sql.Statement stm = conn.createStatement();
+            java.sql.ResultSet res = stm.executeQuery(sql);
+            if (res.next()) {
+                JOptionPane.showMessageDialog(null, "Berhasil Login");
+                produk pk = new produk();
+                pk.setVisible(true);
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Username atau Password salah");
+            }
+        } catch (Exception err) {
+            JOptionPane.showMessageDialog(null, err.getMessage());
+        }
     }//GEN-LAST:event_btnloginActionPerformed
+
+    private void txtpassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpassActionPerformed
+       
+        
+    }//GEN-LAST:event_txtpassActionPerformed
 
     /**
      * @param args the command line arguments
@@ -141,9 +181,13 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txtpassword;
+    private javax.swing.JPasswordField txtpass;
     private javax.swing.JTextField txtusername;
     // End of variables declaration//GEN-END:variables
+
+  
+
+    
 }
