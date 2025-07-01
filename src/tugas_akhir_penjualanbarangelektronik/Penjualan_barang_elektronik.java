@@ -2234,10 +2234,12 @@ public class Penjualan_barang_elektronik extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Penjualan_barang_elektronik.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+ 
+        System.out.println("kontol kalian");
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                
                 new Penjualan_barang_elektronik().setVisible(true);
             }
         });
